@@ -1,7 +1,7 @@
 package streams;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.function.Predicate;
 
 public class _Stream {
 
@@ -15,7 +15,7 @@ public class _Stream {
         );
 
 
-        people.stream()
+/*        people.stream()
                 .map(person -> person.name)
                 .collect(Collectors.toSet())
                 .forEach(System.out::println);
@@ -23,7 +23,13 @@ public class _Stream {
         people.stream()
                 .map(person -> person.name)
                 .mapToInt(name -> name.length())
-                .forEach(System.out::println);
+                .forEach(System.out::println);*/
+
+        final Predicate<Person> personPredicate = person -> GENDER.PREFER_NOT_TO_SAY.equals(person.gender);
+        final boolean containsOnlyFemale = people.stream()
+                .noneMatch(personPredicate);
+
+        System.out.println(containsOnlyFemale);
 
 
     }
